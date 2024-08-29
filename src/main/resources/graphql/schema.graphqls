@@ -1,0 +1,38 @@
+type Product {
+    id: ID
+    name: String
+    price: Float
+    description: String
+    category: String
+    stockQuantity: Int
+    createdDate: Date
+}
+
+input ProductInput {
+    name: String
+    price: Float
+    description: String
+    category: String
+    stockQuantity: Int
+    createdDate: Date
+}
+
+input ProductSearchRequest {
+    name: String
+    minPrice: Float
+    maxPrice: Float
+}
+
+type Query {
+    getAllProducts: [Product]
+    getProductById(id: ID): Product
+}
+
+type Mutation {
+    searchProducts(request: ProductSearchRequest): [Product]
+    createProduct(product: ProductInput): Product
+    updateProduct(id: ID, productDetails: ProductInput): Product
+    deleteProduct(id: ID): Boolean
+}
+
+scalar Date
